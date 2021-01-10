@@ -16,7 +16,7 @@ public class PaymentController {
     @Resource
     private PaymentService paymentService;
 
-    @Value("server.port")
+    @Value("${server.port}")
     private String serverPort;
 
     @PostMapping(value = "/payment/create")
@@ -37,9 +37,9 @@ public class PaymentController {
         log.info("getPaymentById is {}", payment);
 
         if (payment != null) {
-            return new CommonResult(200, "getPaymentById success", payment);
+            return new CommonResult(200, "getPaymentById success, serverPort: " + serverPort, payment);
         } else {
-            return new CommonResult(444, "getPaymentById fail", payment);
+            return new CommonResult(444, "getPaymentById fail, serverPort: " + serverPort, payment);
         }
     }
 }
